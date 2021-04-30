@@ -1,9 +1,13 @@
 resource "aws_security_group" "a" {
+  provider = aws.use1
+
   name   = "${var.app_name}-a-sg"
   vpc_id = aws_vpc.a.id
 }
 
 resource "aws_security_group_rule" "a" {
+  provider = aws.use1
+
   type              = "egress"
   from_port         = 0
   to_port           = 0
@@ -13,6 +17,8 @@ resource "aws_security_group_rule" "a" {
 }
 
 resource "aws_security_group_rule" "a_1" {
+  provider = aws.use1
+
   type                     = "ingress"
   from_port                = 0
   to_port                  = 0
@@ -22,6 +28,8 @@ resource "aws_security_group_rule" "a_1" {
 }
 
 resource "aws_security_group_rule" "a_2" {
+  provider = aws.use1
+
   type              = "ingress"
   from_port         = 0
   to_port           = 0
@@ -31,6 +39,8 @@ resource "aws_security_group_rule" "a_2" {
 }
 
 resource "aws_security_group_rule" "a_3" {
+  provider = aws.use1
+
   type              = "ingress"
   from_port         = 22
   to_port           = 22

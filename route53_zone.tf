@@ -1,12 +1,15 @@
 resource "aws_route53_zone" "private" {
-  name = "execute-api.ap-northeast-1.amazonaws.com"
+  provider = aws.use1
 
+  name = "execute-api.ap-northeast-1.amazonaws.com"
   vpc {
     vpc_id = aws_vpc.a.id
   }
 }
 
 resource "aws_route53_record" "apigw" {
+  provider = aws.use1
+
   zone_id = aws_route53_zone.private.zone_id
   name    = "*.execute-api.ap-northeast-1.amazonaws.com"
   type    = "A"

@@ -1,9 +1,11 @@
 resource "aws_route_table" "a_public" {
+  provider = aws.use1
+
   vpc_id = aws_vpc.a.id
 
   route {
     cidr_block = aws_vpc.b.cidr_block
-    gateway_id = aws_vpc_peering_connection.this.id
+    gateway_id = aws_vpc_peering_connection.peer.id
   }
 
   route {
@@ -21,7 +23,7 @@ resource "aws_route_table" "b_public" {
 
   route {
     cidr_block = aws_vpc.a.cidr_block
-    gateway_id = aws_vpc_peering_connection.this.id
+    gateway_id = aws_vpc_peering_connection.peer.id
   }
 
   route {
@@ -35,11 +37,13 @@ resource "aws_route_table" "b_public" {
 }
 
 resource "aws_route_table_association" "public_a" {
-  subnet_id      = aws_subnet.a_public_a.id
+  provider = aws.use1
+
+  subnet_id      = aws_subnet.a_public.id
   route_table_id = aws_route_table.a_public.id
 }
 
 resource "aws_route_table_association" "public_c" {
-  subnet_id      = aws_subnet.b_public_a.id
+  subnet_id      = aws_subnet.b_public.id
   route_table_id = aws_route_table.b_public.id
 }
