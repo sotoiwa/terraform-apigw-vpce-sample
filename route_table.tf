@@ -4,8 +4,8 @@ resource "aws_route_table" "a_public" {
   vpc_id = aws_vpc.a.id
 
   route {
-    cidr_block = aws_vpc.b.cidr_block
-    gateway_id = aws_vpc_peering_connection.peer.id
+    cidr_block                = aws_vpc.b.cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
 
   route {
@@ -22,8 +22,8 @@ resource "aws_route_table" "b_public" {
   vpc_id = aws_vpc.b.id
 
   route {
-    cidr_block = aws_vpc.a.cidr_block
-    gateway_id = aws_vpc_peering_connection.peer.id
+    cidr_block                = aws_vpc.a.cidr_block
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
 
   route {
